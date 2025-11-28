@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>装備強化シミュレーター</title>
+<title>タリスマン強化シミュレーター</title>
 
 <style>
 body { font-family: sans-serif; padding: 20px; }
@@ -15,7 +15,7 @@ h2 { margin-top: 30px; }
 </head>
 
 <body>
-<h1>装備強化シミュレーター</h1>
+<h1>タリスマン強化シミュ</h1>
 
 <label>
   <input type="checkbox" id="useShield" checked>
@@ -145,8 +145,8 @@ function updateAll() {
     let setName = "";
     let effect = null;
 
-    if (count >= 4) { setName = "セット4"; effect = data.set4; }
-    else if (count === 3) { setName = "セット3"; effect = data.set3; }
+    if (count >= 4) { setName = "セット4"; effect = data.set4 + data.set3 + data.set2; }
+    else if (count === 3) { setName = "セット3"; effect = data.set3 + data.set2; }
     else if (count === 2) { setName = "セット2"; effect = data.set2; }
 
     if (effect) {
