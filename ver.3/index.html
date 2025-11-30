@@ -1,1 +1,73 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>タリスマン強化シミュ ver.2</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
+<header class="top-bar">
+  <h1>タリスマン強化シミュレーター ver.2</h1>
+
+  <div class="top-controls">
+    <div>
+      装備レベル：
+      <select id="levelSelect">
+        <option value="60">60</option>
+        <option value="75">75</option>
+        <option value="100">100</option>
+        <option value="110" selected>110</option>
+      </select>
+    </div>
+
+    <label>
+      <input type="checkbox" id="useShield" checked>
+      盾を使う
+    </label>
+
+    <button id="resetBtn">リセット</button>
+  </div>
+</header>
+
+<main class="layout">
+
+  <section class="card" id="equipCard">
+    <h2>装備とタリスマン / パワーストーン</h2>
+    <div id="slotArea"></div>
+    <p class="note">
+      ※ 各装備にはタリスマン1つとパワーストーン3つをセットできます（同一装備内で同じストーン重複不可）
+    </p>
+  </section>
+
+  <aside class="card" id="resultCard">
+    <h2>合計ステータス</h2>
+    <div id="totalArea" class="muted">まだ何も選択されていません</div>
+
+    <h3>タリスマンのセット効果内訳</h3>
+    <div id="talismanDetail" class="muted">なし</div>
+
+    <h3>パワーストーン内訳</h3>
+    <div id="stoneDetail" class="muted">なし</div>
+  </aside>
+
+</main>
+
+<section class="card" id="effectCard">
+  <h2>効果一覧（タリスマン × レアリティ）</h2>
+  <details open>
+    <summary>開閉する</summary>
+    <div id="effectTableArea" class="effect-table-wrap muted">読み込み中…</div>
+  </details>
+</section>
+
+<section class="card" id="memoCard">
+  <h2>メモ</h2>
+  <textarea id="freeMemo" rows="4" placeholder="ビルドのメモなどを自由に書けます（自動保存）"></textarea>
+</section>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
