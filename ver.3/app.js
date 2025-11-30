@@ -86,52 +86,56 @@ const useShieldCheck = document.getElementById("useShield");
 
 let currentSlots = [...ALL_SLOTS];
 
-function buildSlots(){
-  slotArea.innerHTML = "";
-  currentSlots.forEach(slotName=>{
-    const row = document.createElement("div");
-    row.className = "slot-row";
+function buildslots(slotName) {
+  const row = document.createElement("div");
+  row.className = "slot-row";
+  row.dataset.slot = slotName;
 
-    row.innerHTML = `
-      <div class="slot-label">${escapeHtml(slotName)}</div>
-      <div>
-        <select class="talisman-select">
-          <option value="">タリスマンなし</option>
-          ${Object.keys(TALISMANS).map(n=>`<option value="${escapeHtml(n)}">${escapeHtml(n)}</option>`).join("")}
-        </select>
-      </div>
-      <div>
-        <select class="rarity-select">
-          <option value="legendary">LEG</option>
-          <option value="rare">RARE</option>
-          <option value="uncommon">UNC</option>
-        </select>
-      </div>
-      <div>
-        <select class="stone-select">
-          <option value="">ストーンなし</option>
-          ${Object.keys(POWER_STONES).map(n=>`<option value="${escapeHtml(n)}">${escapeHtml(POWER_STONES[n].ui)} (${escapeHtml(n)})</option>`).join("")}
-        </select>
-      </div>
-      <div>
-        <select class="stone-select">
-          <option value="">ストーンなし</option>
-          ${Object.keys(POWER_STONES).map(n=>`<option value="${escapeHtml(n)}">${escapeHtml(POWER_STONES[n].ui)} (${escapeHtml(n)})</option>`).join("")}
-        </select>
-      </div>
-      <div>
-        <select class="stone-select">
-          <option value="">ストーンなし</option>
-          ${Object.keys(POWER_STONES).map(n=>`<option value="${escapeHtml(n)}">${escapeHtml(POWER_STONES[n].ui)} (${escapeHtml(n)})</option>`).join("")}
-        </select>
-      </div>
-    `;
-    slotArea.appendChild(row);
+  row.innerHTML = `
+    <div class="slot-line1">
+      <span class="slot-label">${slotName}</span>
+      <select class="rarity-select">
+        <option value="legendary">LEG</option>
+        <option value="rare">RARE</option>
+        <option value="uncommon">UNC</option>
+      </select>
+      <select class="talisman-select">
+        <option value="">タリスマン未選択</option>
+        ${Object.keys(TALISMAN_MASTER).map(key =>
+          `<option value="${key}">${key}</option>`
+        ).join("")}
+      </select>
+    </div>
+
+    <div class="slot-line2">
+      <span class="slot-sub-label">PowerStone</span>
+      <select class="ps-select" data-ps-index="0">
+        <option value="">なし</option>
+        ${Object.keys(POWER_STONE_MASTER).map(key =>
+          `<option value="${key}">${key}</option>`
+        ).join("")}
+      </select>
+      <select class="ps-select" data-ps-index="1">
+        <option value="">なし</option>
+        ${Object.keys(POWER_STONE_MASTER).map(key =>
+          `<option value="${key}">${key}</option>`
+        ).join("")}
+      </select>
+      <select class="ps-select" data-ps-index="2">
+        <option value="">なし</option>
+        ${Object.keys(POWER_STONE_MASTER).map(key =>
+          `<option value="${key}">${key}</option>`
+        ).join("")}
+      </select>
+    </div>
+  `;
+
+  // ここで change イベントのハンドラをつなげる（既存のロジックに合わせて）
+  row.querySelectorAll('select').forEach(sel => {
+    sel.addEventListener('change', handleSelectionChange);
   });
 
-  slotArea.querySelectorAll("select").forEach(sel=>{
-    sel.addEventListener("change", handleChange);
-  });
+  return row;
 }
 
 function handleChange(e){
