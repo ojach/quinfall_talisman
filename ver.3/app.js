@@ -128,7 +128,7 @@ function buildSlots(){
         <div class="slot-label">${escapeHtml(slotName)}</div>
 
         <select class="talisman-select">
-          <option value="">タリスマンなし</option>
+          <option value="">タリスマン選択</option>
           ${Object.keys(TALISMANS)
             .map(n=>`<option value="${escapeHtml(n)}">${escapeHtml(n)}</option>`)
             .join("")}
@@ -143,9 +143,10 @@ function buildSlots(){
 
       <!-- ◆ 2段目：パワーストーン（3枠） -->
       <div class="slot-bottom">
+      <div class="slot-bottom-spacer"></div>   <!-- ★ 空白カラム -->
         ${[1,2,3].map(()=>`
           <select class="stone-select">
-            <option value="">ストーンなし</option>
+            <option value="">ストーン選択</option>
             ${Object.keys(POWER_STONES)
               .map(n=>`<option value="${escapeHtml(n)}">${escapeHtml(POWER_STONES[n].ui)} (${escapeHtml(n)})</option>`)
               .join("")}
