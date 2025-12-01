@@ -174,3 +174,70 @@ select {
     flex-wrap: wrap;
   }
 }
+/* =========================================================
+   ▼ 2段構成：タリスマン行 ＋ ストーン行（最新版）
+   ========================================================= */
+
+/* スロット全体を縦に並べる */
+.slot-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px;
+  margin-bottom: 12px;
+  background: #fff;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+
+  /* ← 古い grid 設定を完全上書き */
+  grid-template-columns: unset !important;
+}
+
+/* 上段（タリスマン + レアリティ） */
+.slot-top {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ラベル（装備名） */
+.slot-label {
+  width: 80px;
+  flex-shrink: 0;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* 下段（ストーン 3つ） */
+.slot-bottom {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+/* ストーンのセレクト幅 */
+.slot-bottom select {
+  min-width: 120px;
+}
+
+/* ▼ スマホ最適化 (幅狭い時は自然な折り返しへ) */
+@media (max-width: 600px) {
+  .slot-top,
+  .slot-bottom {
+    flex-wrap: wrap;
+  }
+
+  .slot-label {
+    width: 100%;
+  }
+
+  .slot-top select {
+    flex: 1 1 calc(50% - 10px);
+  }
+
+  .slot-bottom select {
+    flex: 1 1 calc(50% - 10px);
+    min-width: 0;
+  }
+}
