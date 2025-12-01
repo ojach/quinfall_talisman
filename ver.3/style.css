@@ -232,4 +232,11 @@ select {
     flex: 1 1 calc(50% - 10px);
     min-width: 0;
   }
+/* ▼ 2段レイアウト専用：グローバルの select 100% を打ち消す */
+.slot-top select,
+.slot-bottom select {
+  width: auto;
+  max-width: 45%;   /* 必要なら調整、なくてもOK */
+  flex-shrink: 1;
+}
 }
