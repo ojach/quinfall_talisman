@@ -268,3 +268,36 @@ select {
     width: auto;
   }
 }
+/* １スロット全体の枠 */
+.slot-row {
+  display: flex;
+  flex-direction: column;  /* ← 全体は縦だが… */
+  gap: 6px;
+  padding: 8px;
+  margin-bottom: 12px;
+  background: #fafafa;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+
+/* 上段（タリスマン + レアリティ）を横並び */
+.slot-top {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+/* 下段（ストーン3つ）を横並び */
+.slot-bottom {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+/* ラベル部分 */
+.slot-label {
+  width: 70px;
+  font-weight: 600;
+  color: #333;
+}
