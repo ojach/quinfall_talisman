@@ -181,118 +181,21 @@ select {
   border-radius: 6px;
   border: 1px solid #ddd;
 
-  /* ← 古い grid 設定を完全上書き */
-  grid-template-columns: unset !important;
-}
-
-/* 上段（タリスマン + レアリティ） */
-.slot-top {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 10px;
-}
-
-/* ラベル（装備名） */
-.slot-label {
-  width: 80px;
-  flex-shrink: 0;
-  font-weight: 600;
-  font-size: 14px;
-}
-
-/* 下段（ストーン 3つ） */
-.slot-bottom {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-}
-
-/* ストーンのセレクト幅 */
-.slot-bottom select {
-  min-width: 120px;
-}
-
-/* ▼ スマホ最適化 (幅狭い時は自然な折り返しへ) */
-@media (max-width: 600px) {
-  .slot-top,
-  .slot-bottom {
-    flex-wrap: wrap;
-  }
-
-  .slot-label {
-    width: 100%;
-  }
-
-  .slot-top select {
-    flex: 1 1 calc(50% - 10px);
-  }
-
-  .slot-bottom select {
-    flex: 1 1 calc(50% - 10px);
-    min-width: 0;
-  }
-  }
-/* ▼ 2段レイアウト専用：グローバルの select 100% を打ち消す */
-.slot-top select,
-.slot-bottom select {
-  width: auto;
-  max-width: 45%;   /* 必要なら調整、なくてもOK */
-  flex-shrink: 1;
-}
-
-/* ------ 理想レイアウト版：武器 タリスマン …… LEG ------ */
-
-/* 上段 */
 .slot-top {
   display: grid;
-  grid-template-columns: 80px 1fr auto; /* ラベル / タリスマン / LEG */
-  align-items: center;
+  grid-template-columns: 80px 1fr 70px; /* ラベル80 / タリスマン / LEG */
   gap: 10px;
+  align-items: center;
 }
 
-/* ラベル固定幅 */
-.slot-label {
-  width: auto; /* gridで揃えるので固定幅いらない */
-  font-weight: 600;
-  font-size: 14px;
-}
-
-/* 下段：ストーン3つ並べる */
+/* ▼ 下段はラベルと同じ幅の「空列」を作る */
 .slot-bottom {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 80px 1fr 1fr 1fr; /* 左80pxは空白カラム */
   gap: 10px;
 }
 
-/* ← グローバルの select 100% を打ち消す */
-.slot-top select,
+/* ↓ ストーン select は2〜4列目だけでOK */
 .slot-bottom select {
-  width: 100%; /* gridの幅に従う */
-}
-
-/* スマホ対応 */
-@media (max-width: 600px) {
-  .slot-top {
-    grid-template-columns: 80px 1fr; /* 2カラム */
-    grid-template-areas:
-      "label talisman"
-      "label rarity";
-  }
-
-  .slot-label {
-    grid-area: label;
-  }
-
-  .slot-top select:nth-of-type(1) {
-    grid-area: talisman;
-  }
-
-  .slot-top select:nth-of-type(2) {
-    grid-area: rarity;
-  }
-
-  .slot-bottom {
-    grid-template-columns: 1fr 1fr;
-  }
+  width: 100%;
 }
