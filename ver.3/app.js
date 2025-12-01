@@ -135,28 +135,35 @@ function buildSlots(){
 
 function handleChange(e){
   const row = e.target.closest(".slot-row");
+  const slotName = row.querySelector(".slot-label").textContent.trim();
 
-  // ▼ 1スロット内だけ重複チェック
-  if (row){
-    const stoneSelects = Array.from(row.querySelectorAll(".stone-select"));
-    const chosen = stoneSelects.map(s=>s.value).filter(v=>v);
+  // どこが変更されたか
+  const isStone = e.target.classList.contains("stone-select");
 
-    stoneSelects.forEach(sel=>{
-      const current = sel.value;
-      Array.from(sel.options).forEach(opt=>{
-        if (!opt.value) return;
-
-        // 同じスロット内だけ重複禁止（ここが重要）
-        opt.disabled = (opt.value !== current && chosen.includes(opt.value));
-      });
-    });
+  // ◇ 1) パワーストーンの場合 → 手動変更フラグを立てる
+  if (isStone){
+    manualStoneChange[slotName] = true;
   }
 
-  // ▼ 武器スロットの操作 → 全コピートリガー
-  const slotName = row?.querySelector(".slot-label")?.innerText;
-  if (slotName === "武器"){
-    const [s1, s2, s3] = row.querySelectorAll(".stone-select");
-    autoFillStonesFromWeapon(s1.value, s2.value, s3.value);
+  // ◇ 2) 武器のパワーストーンが変更されたら全スロットにコピーする（A1仕様）
+  if (slotName === "武器" && isStone){
+    const stoneSelects = Array.from(row.querySelectorAll(".stone-select"));
+    const stoneValues = stoneSelects.map(x => x.value);
+
+    currentSlots.forEach(otherSlot => {
+      if (otherSlot === "武器") return;
+      if (manualStoneChange[otherSlot]) return; // 手動で変更されたスロットは無視
+
+      const targetRow = [...slotArea.querySelectorAll(".slot-row")]
+        .find(r => r.querySelector(".slot-label").textContent.trim() === otherSlot);
+
+      if (!targetRow) return;
+
+      const otherSelects = Array.from(targetRow.querySelectorAll(".stone-select"));
+      otherSelects.forEach((sel, i)=>{
+        sel.value = stoneValues[i] || "";
+      });
+    });
   }
 
   updateAll();
