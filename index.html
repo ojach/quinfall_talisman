@@ -1,1 +1,164 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OJACH PORTAL</title>
 
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Noto Sans JP", sans-serif;
+      background: #ffffff;
+      color: #222;
+      text-align: center;
+    }
+
+    /* Hero / ヘッダー画像 */
+    .hero {
+      width: 100%;
+      height: auto;
+      overflow: hidden;
+    }
+
+    .hero img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* メインボタン */
+    .main-buttons {
+      margin: 40px auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      width: 85%;
+      max-width: 400px;
+    }
+
+    .main-buttons a {
+      background: #0a7849;  /* 深緑(JACHに合わせて) */
+      color: white;
+      padding: 16px 0;
+      font-size: 18px;
+      font-weight: 600;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: 0.25s;
+    }
+
+    .main-buttons a:hover {
+      background: #0e9260;
+    }
+
+    /* セクションタイトル */
+    .section-title {
+      margin-top: 60px;
+      margin-bottom: 20px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    /* 3カード */
+    .cards {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      width: 90%;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: #fafafa;
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+
+    .card h3 {
+      margin: 0;
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      margin: 0;
+      margin-bottom: 18px;
+      color: #444;
+    }
+
+    .card a {
+      color: #0a7bc0;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .card a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      margin: 60px 0;
+      color: #777;
+      font-size: 14px;
+    }
+
+    /* PCで横並び */
+    @media (min-width: 800px) {
+      .cards {
+        flex-direction: row;
+        justify-content: center;
+      }
+      .card {
+        width: 280px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Hero：ヘッダー画像 -->
+  <div class="hero">
+    <img src="assets/header.png" alt="OJACH PORTAL HEADER">
+  </div>
+
+  <!-- メイン導線 -->
+  <div class="main-buttons">
+    <a href="https://ojach.base.shop/" target="_blank">🛍 JACH SHOP</a>
+    <a href="https://twitch.tv/ojyach" target="_blank">🎮 Twitch</a>
+    <a href="https://github.ojach.com" target="_blank">💻 DEV LAB</a>
+  </div>
+
+  <!-- 3本柱カード -->
+  <div class="section-title">OJACHの活動</div>
+
+  <div class="cards">
+    <div class="card">
+      <h3>🎮 Streamer</h3>
+      <p>The Quinfallを中心にゲーム配信中。</p>
+      <a href="https://twitch.tv/ojyach" target="_blank">Twitch を開く</a>
+    </div>
+
+    <div class="card">
+      <h3>🛍 Crafter - JACH</h3>
+      <p>オリジナル革製品＆ピアスのキーアクセを制作販売。</p>
+      <a href="https://ojach.base.shop/" target="_blank">ショップを見る</a>
+    </div>
+
+    <div class="card">
+      <h3>💻 Developer</h3>
+      <p>Quinfall向けの便利ツール・計算機を開発。</p>
+      <a href="https://github.ojach.com" target="_blank">DEV LAB を開く</a>
+    </div>
+  </div>
+
+  <footer>
+    © 2025 OJACH PORTAL
+  </footer>
+
+</body>
+</html>
