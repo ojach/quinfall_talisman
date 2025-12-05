@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="apple-touch-icon" sizes="192x192" href="logo.PNG">
+  <link rel="manifest" href="./manifest.json">
+<title>OJapp</title>
+<style>
+body{
+  margin:0; display:flex; justify-content:center; align-items:center;
+  height:100vh; background:#e6f6ff;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+/* スナック帰省テーマ */
+.snack{
+  background:#2a0039; color:#ffd700;
+}
+.snack::before{
+  content:""; position:absolute; inset:0;
+  background:radial-gradient(circle,#65007d,#1b0028);
+  opacity:.9; z-index:-1;
+}
+#logo{
+  background:white; padding:22px 30px; border-radius:22px;
+  font-size:30px; font-weight:bold; color:#ff69b4;
+  box-shadow:0 4px 10px rgba(0,0,0,.25);
+  animation:pulse 1.2s infinite;
+}
+@keyframes pulse{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.07);}
+  100%{transform:scale(1);}
+}
+.msg{position:absolute; bottom:25px; text-align:center; width:100%; color:#0008;}
+</style>
+</head>
+<body>
+<div id="logo">OJapp</div>
+<div class="msg" id="msg"></div>
+
+<script>
+// ← ここだけ書き換えたらアプリ化できる
+// targetURL="" のまま実行すると帰省モードになる🍶
+let targetURL = "https://github.ojach.com/OJapp/"; // ← URL入力版ではここ自動書換予定
+
+if(!targetURL){
+  document.body.classList.add("snack");
+  msg.innerHTML="※まれに帰省現象が報告されています<br>(どうやらURLが関係しているらしい…)";
+  setTimeout(()=>location.href="https://github.ojach.com/OJapp/",1400);
+}else{
+  setTimeout(()=>location.href=targetURL,5000);
+}
+</script>
+</body>
+</html>
